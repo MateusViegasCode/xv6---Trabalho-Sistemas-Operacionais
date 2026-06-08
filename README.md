@@ -5,9 +5,9 @@ Integrantes do Grupo
 
 1. Leandro Evaristo De Sousa
 2. Mateus Alves Viegas
-3. Cauê
+3. Cauê Fernando Faria Abreu
 4. Igor dos Reis Mascarenhas
-5. Júlia
+5. Júlia Yasmin Silva Guimarães
 6. Sanmyla
 
 ## Descrição das Etapas
