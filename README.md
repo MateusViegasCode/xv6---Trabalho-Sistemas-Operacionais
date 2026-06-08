@@ -3,12 +3,12 @@
 
 Integrantes do Grupo
 
-1. [Leandro Evaristo De Sousa]
-2. [Mateus Alves Viegas]
-3. [Cauê]
-4. [Igor dos Reis Mascarenhas]
-5. [Júlia]
-6. [Sanmtla]
+1. Leandro Evaristo De Sousa
+2. Mateus Alves Viegas
+3. Cauê
+4. Igor dos Reis Mascarenhas
+5. Júlia
+6. Sanmyla
 
 ## Descrição das Etapas
 
