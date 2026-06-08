@@ -8,7 +8,7 @@ Integrantes do Grupo
 3. Cauê Fernando Faria Abreu
 4. Igor dos Reis Mascarenhas
 5. Júlia Yasmin Silva Guimarães
-6. Sanmyla
+6. Sanmyla Silva Costa
 
 ## Descrição das Etapas
 
