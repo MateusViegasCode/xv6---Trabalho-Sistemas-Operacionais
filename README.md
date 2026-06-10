@@ -13,6 +13,8 @@ Integrantes do Grupo
 ## Descrição das Etapas
 
 ### ETAPA 1: Fundamentação
-Nesta primeira etapa, focamos no planejamento e na explicação teórica da solução que será implementada. As seguintes entregas estão disponíveis neste repositório:
-* **Apresentação em Slides:** Documento visual contendo a arquitetura proposta e os detalhes teóricos (disponível na pasta `slides/`).
-* **Vídeo Explicativo:** Vídeo contendo a participação de todos os membros, apresentando a motivação, o funcionamento do `getppid()` e a lógica de escalonamento FCFS que será introduzida no xv6 (disponível na pasta `video/`).
+* Apresentação em Slides: Apoio visual (localizado na pasta slides/) para ilustrar a arquitetura que propomos, nossos embasamentos teóricos e mapear quais componentes do kernel serão alterados na próxima etapa.
+* Vídeo Explicativo: Gravamos um vídeo (disponível na pasta video/) onde todos os membros do grupo participam ativamente. Nele, nós compartilhamos e explicamos os detalhes técnicos da nossa solução, abordando:
+* A motivação e os objetivos centrais do Tema 2.
+* O embasamento teórico e a nossa proposta de implementação para a system call getppid() , que nos permitirá mapear e identificar a hierarquia de processos do sistema.
+* A lógica e a adaptação do algoritmo de escalonamento FCFS (First-Come, First-Served), pensado para garantir que os processos sejam executados respeitando estritamente a ordem de chegada.
