@@ -414,50 +414,6 @@ kwait(uint64 addr)
   }
 }
 
-
-
-void
-scheduler(void)
-{
-  struct proc *p;
-  struct cpu *c = mycpu();
-
-  c->proc = 0;
-  for(;;){
-    // Avoid deadlock by ensuring that devices can interrupt.
-    intr_on();
-
-    int found = 0;
-    for(p = proc; p < &proc[NPROC]; p++) {
-      acquire(&p->lock);
-      if(p->state == RUNNABLE) {
-        p->state = RUNNING;
-        c->proc = p;
-        swtch(&c->context, &p->context);
-
-        c->proc = 0;
-        found = 1;
-      }
-      release(&p->lock);
-    }
-    if(found == 0) {
-      asm volatile("wfi");
-    }
-  }
-}
-
-void
-yield(void)
-{
-  struct proc *p = myproc();
-  acquire(&p->lock);
-  p->state = RUNNABLE;
-  sched();
-  release(&p->lock);
-}
-
-
-
 // Per-CPU process scheduler.
 // Each CPU calls scheduler() after setting itself up.
 // Scheduler never returns.  It loops, doing:
@@ -465,7 +421,57 @@ yield(void)
 //  - swtch to start running that process.
 //  - eventually that process transfers control
 //    via swtch back to the scheduler.
+void
+scheduler(void)
+{
+  struct proc *p;
+  struct cpu *c = mycpu();
 
+  c->proc = 0;
+  for (;;) {
+    // Evita deadlock ativando/desativando interrupções
+    intr_on();
+    intr_off();
+
+    int found = 0;
+    struct proc *first_proc = 0;
+
+    //Encontrar o processo RUNNABLE com o menor PID (o que chegou primeiro)
+    for (p = proc; p < &proc[NPROC]; p++) {
+      acquire(&p->lock);
+      if (p->state == RUNNABLE) {
+        // Se for o primeiro que encontramos, ou se tiver um PID menor que o selecionado
+        if (first_proc == 0 || p->pid < first_proc->pid) {
+          if (first_proc != 0) {
+            release(&first_proc->lock); // Libera o anterior escolhido
+          }
+          first_proc = p; // Guarda o novo candidato mais antigo
+          continue;       // Mantém o lock de 'first_proc' retido
+        }
+      }
+      release(&p->lock);
+    }
+
+    //Executar o processo escolhido
+    if (first_proc != 0) {
+      // O lock de first_proc já está retido da Fase 1
+      first_proc->state = RUNNING;
+      c->proc = first_proc;
+      
+      swtch(&c->context, &first_proc->context);
+
+      // O processo cedeu a CPU ou terminou e voltou para o scheduler
+      c->proc = 0;
+      found = 1;
+      release(&first_proc->lock);
+    }
+
+    if (found == 0) {
+      // Nada para rodar; desliga o núcleo até a próxima interrupção.
+      asm volatile("wfi");
+    }
+  }
+}
 // Switch to scheduler.  Must hold only p->lock
 // and have changed proc->state. Saves and restores
 // intena because intena is a property of this
@@ -494,7 +500,15 @@ sched(void)
 }
 
 // Give up the CPU for one scheduling round.
-
+void
+yield(void)// No FCFS puro, não há preempção por tempo (Time Slice).
+{
+  /*struct proc *p = myproc();
+  acquire(&p->lock);
+  p->state = RUNNABLE;
+  sched();
+  release(&p->lock);*/
+}
 
 // A fork child's very first scheduling by scheduler()
 // will swtch to forkret.

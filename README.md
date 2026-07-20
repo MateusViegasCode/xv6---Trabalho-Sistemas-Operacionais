@@ -31,11 +31,11 @@ Nesta etapa, as propostas da Etapa 1 foram efetivamente implementadas no kernel 
 
 | Arquivo | O que foi modificado |
 |---|---|
-| `kernel/syscall.h` | Adicionados os números de chamada de sistema `SYS_getidade` (23) e `SYS_getppid` (24). |
-| `kernel/syscall.c` | Adicionados os protótipos `extern` de `sys_getidade()` e `sys_getppid()`, e suas entradas no vetor `syscalls[]`. |
+| `kernel/syscall.h` | Adicionados os números de chamada de sistema `SYS_getppid` (24). |
+| `kernel/syscall.c` | Adicionados os protótipos `extern` de `sys_getppid()`, e suas entradas no vetor `syscalls[]`. |
 | `kernel/sysproc.c` | Implementada a função `sys_getppid()`, que retorna o PID do processo pai ou 1 caso não tenha pai. |
-| `user/user.h` | Adicionados os protótipos `int getidade(void);` e `int getppid(void);`. |
-| `user/usys.pl` | Adicionadas as chamadas `entry("getidade")` e `entry("getppid")`, que geram os stubs em assembly (`usys.S`). |
+| `user/user.h` | Adicionados os protótipos `int getppid(void);`. |
+| `user/usys.pl` | Adicionadas as chamadas `entry("getppid")`, que geram os stubs em assembly (`usys.S`). |
 | `kernel/proc.c` | Reescrita da função `scheduler()`: escolhe o processo `RUNNABLE` de menor PID (critério FCFS), em vez de Round Robin. A função `yield()` foi neutralizada (no-op) para remover a preempção por tempo. |
 | `user/teste.c` | Programa de teste: valida `getppid()` e demonstra experimentalmente a ordem de execução do escalonador, registrando os ticks de chegada, início e término de cada processo. |
 
