@@ -103,7 +103,7 @@ Para rodar cada cenário:
 ## Estrutura do Repositório
 
 ```
-grupoX/
+/
 ├── README.md
 ├── slides/
 ├── video/
