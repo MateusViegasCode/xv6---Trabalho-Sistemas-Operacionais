@@ -100,19 +100,6 @@ Para rodar cada cenário:
 
 > Antes de finalizar/entregar, garanta que `kernel/proc.c` esteja copiado a partir de `proc_FCFS_backup.c`, já que o FCFS é a versão oficial do Tema 2.
 
-## Resultados
-
-Resumo das médias obtidas (dados completos e análise no PDF em `report/`):
-
-| Métrica média (ticks) | FCFS | Round Robin |
-|---|---|---|
-| Response Time | 4,75 | 1,75 |
-| Turnaround | 7,5 | 9,75 |
-| Burst (CPU) | 2,75 | 8 |
-| Tempo total do lote | 12 | 14 |
-
-Os resultados confirmam o efeito comboio (*convoy effect*) no FCFS e a distribuição mais equilibrada de tempo de resposta no Round Robin. Detalhes completos, gráficos e análise crítica estão no relatório técnico em `report/`.
-
 ## Estrutura do Repositório
 
 ```
